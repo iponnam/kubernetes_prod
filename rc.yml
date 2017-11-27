@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: ponnam-rc
+spec:
+  replicas: 2
+  selector:
+    app: capgemini
+  template:
+    metadata:
+      name: capgemini
+      labels:
+        app: capgemini
+        env: dev
+    spec:
+      containers:
+      - name: capgemini
+        image: iponnam/devops:latest
+        ports:
+        - containerPort: 8080

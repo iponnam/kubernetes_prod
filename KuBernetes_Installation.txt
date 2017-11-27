@@ -1,0 +1,33 @@
+for i in $(apt-cache depends kubelet | grep -E 'Depends|Recommends|Suggests' | cut -d ':' -f 2,3 | sed -e s/'<'/''/ -e s/'>'/''/); do  apt-get download $i 2>>errors.txt; done
+
+dpkg --configure -a
+apt-get update && apt-get upgrade -y
+apt-get update && apt-get install -y apt-transport-https 
+
+curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add 
+echo deb http://apt.kubernetes.io/ kubernetes-xenial main > /etc/apt/sources.list.d/kubernetes.list 
+apt-get update
+apt-get install -y docker.io kubeadm kubelet kubectl kubeadm kubernetes-cni
+systemctl start docker
+systemctl enable docker
+kubeadm init
+
+  mkdir -p $HOME/.kube
+  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+# List All the pods
+
+  kubectl get pods --all-namespaces
+
+#Joining Nodes to master
+
+kubeadm join --token 845de7.d621e30286c92936 10.138.0.2:6443 --discovery-token-ca-cert-hash sha256:927cfea2e0e01aefaa7518ed5ead06734213df1afe68f2730f9761d7a0474ea4
+#Kubernetes networking setup
+kubectl apply -f https://git.io/weave-kube-1.6
+
+# Replication Controller Setup
+kubectl create -f rc.yml
+
+# Exposing Replication Controller to Service.
+kubectl expose rc ponnam-rc --name=ponnam-svc --target-port=8080 --type=NodePort

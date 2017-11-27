@@ -1,0 +1,4 @@
+sudo cp -i /etc/kubernetes/admin.conf /var/lib/jenkins/.kube/config
+uid=$(id -u)
+gid=$(id -g)
+sudo chown $uid:$gid /var/lib/jenkins/.kube/config

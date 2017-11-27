@@ -1,0 +1,29 @@
+#Jenkins Configuring Build
+Freestyle_Project:
+	
+ -"General" Tab
+	-Choose GIT Hub Project 
+     -https://github.com/iponnam/hello-world-servlet/
+ -"SCM" Tab
+    - Choose GIT 
+        repository url https://github.com/iponnam/hello-world-servlet/
+    - Branches to build 
+        */master
+ -"Build Env" Tab
+    - Select "Abort the build if it's struck"
+        -Set Time-out Strategy to 10 Minutes
+ -"Build Tab"
+    - Execute Shell # this is project specific
+    - Invoke Top level Maven Targets
+            - Goal set to "clean install"
+    - Execute Shell # move built app to Docker foler
+        cp $WORKSPACE/target/helloworld.war $WORKSPACE/docker
+    - Execute Docker Command
+        - Build Docker Image # it builds with tag (Latest)
+        - Tag the docker image with revised version #
+        - Push the latest image to Docker Registry
+        - Push the revised version image to Docker Registry
+    - Execute shell [To deploy containers using orcehestration tool "Kubernetes"]
+        sleep 120 # Allowing time to images pushed read to pull
+        kubectl create -f $WORKSPACE/rc.yml
+3. 
