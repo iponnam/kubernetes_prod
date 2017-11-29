@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: capgemini
+  labels:
+    name: web
+    app: devops
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: web
+    spec:
+        containers:
+          - name: ponnam-01
+            image: iponnam/devops
+            ports:
+              - containerPort: 8080
+                name: ponnam01
+                protocol: TCP
+          - name: ponnam-02
+            image: iponnam/devops
+            ports:
+              - containerPort: 8080
+                name: ponnam02
+                protocol: TCP
