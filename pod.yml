@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: ponnam-pod
+  name: ponnam-pod-02
   labels:
-    zone: dev
+    zone: test
     version: v1
 spec:
   containers:
@@ -12,4 +12,3 @@ spec:
     ports:
     - name: http
       containerPort: 8080
-      hostPort: 81
