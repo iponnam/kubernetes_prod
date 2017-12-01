@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: dev-pod
+  name: dev-pod-01
   labels:
     environment: dev
 spec:
@@ -11,5 +11,5 @@ spec:
     ports:
     - name: http
       containerPort: 8080
-    nodeSelector:
-      environment: dev
+  nodeSelector:
+    environment: dev
