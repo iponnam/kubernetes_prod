@@ -9,7 +9,7 @@ apiVersion: apps/v1beta2
 kind: StatefulSet
 metadata:
   name: <appName>
-  namespace: $nameSpace
+  namespace: <namespace>
 spec:
   selector:
     matchLabels:
@@ -44,7 +44,9 @@ spec:
 " | kubectl apply -f -
 ```
 
-## Kubernetes Service Creation to route the traffic to the container based on the selector
+## Kubernetes Service
+
+ A Sevice will be created to route the traffic to the container based on the selector
 
 ```
 echo "
@@ -64,3 +66,34 @@ spec:
 " | kubectl apply -f -
 ```
 
+## Nginx Ingress Mapping
+
+Nginx Ingress Controller Mapping to route traffic based on the URI of the application based on the service defined in **Rules Section** below:
+
+**Command:**
+
+```
+echo "
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: <project>
+  namespace: <namespace>
+  annotations:
+    nginx.ingress.kubernetes.io/secure-backends: \"true\"
+spec:
+  tls:
+  - hosts:
+    - <domain.name>
+    secretName: <Secret_Name>
+  rules:
+  - host: <domain.name>
+    http:
+      paths:
+      - backend:
+          serviceName: <project>
+          servicePort: 8091
+        path: $uri
+" | kubectl apply -f -
+
+``
