@@ -11,5 +11,5 @@ openssl rsa -in <key_name>.key -out <key_name>-unen.key
 Create the TLS Secret using the files created
 **Command:**
 ```
-kubectl create secret tls <domain.name> --key /home/mule_mc/deployments/certs/<key_name>-unen.key --cert /home/mule_mc/deployments/certs/<cert_name>.cert 
+kubectl create secret tls <domain.name> --key /home/mule_mc/deployments/certs/<key_name>-unen.key --cert /home/mule_mc/deployments/certs/<cert_name>.cert
 ```
