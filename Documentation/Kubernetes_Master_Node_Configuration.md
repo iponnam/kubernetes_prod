@@ -1,6 +1,6 @@
 # Kubernetes Cluster Configuration
 
-########################################################################################################
+
 ## Kubernetes Master Initiation
 
 ```
@@ -21,7 +21,6 @@ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 
-########################################################################################################
 ## Kubernetes Worker Node configuration
 
 Command: 
@@ -31,3 +30,11 @@ sudo kubeadm join --token <token#> --discovery-token-ca-cert-hash <discovery cer
 Example:
 *kubeadm join --token 845de7.d621e30286c92936 10.138.0.2:6443 --discovery-token-ca-cert-hash sha256:927cfea2e0e01aefaa7518ed5ead06734213df1afe68f2730f9761d7a0474ea4*
 
+## Network Overy Lay Configuration
+
+**Command:**
+
+```
+export kubever=$(kubectl version | base64 | tr -d '\n')
+kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$kubever"
+```
