@@ -94,8 +94,8 @@ spec:
       paths:
       - backend:
           serviceName: <project>
-          servicePort: 8091
-        path: $uri
+          servicePort: <Service Port #>
+        path: <uri>
 " | kubectl apply -f -
 
 ``
