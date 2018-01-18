@@ -10,5 +10,5 @@ sudo add-apt-repository \
 
 sudo apt-get update
 
-\sudo apt-get install docker-ce=17.03.2~ce-0~ubuntu-xenial -y
+sudo apt-get install docker-ce=17.03.2~ce-0~ubuntu-xenial -y
 ```
