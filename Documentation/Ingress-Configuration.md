@@ -21,4 +21,7 @@ curl https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/rb
 
 curl https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/with-rbac.yaml \
     | kubectl apply -f 
+	
+curl https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/provider/baremetal/service-nodeport.yaml \
+    | kubectl apply -f 
 ```
