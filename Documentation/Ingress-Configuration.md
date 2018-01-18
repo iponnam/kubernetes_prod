@@ -1,5 +1,5 @@
 # Kubernetes Configuration for Ingress Controller
-
+**Execute the following Commands on Kubernetes Master Node**
 ```
 curl https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/namespace.yaml \
     | kubectl apply -f -
