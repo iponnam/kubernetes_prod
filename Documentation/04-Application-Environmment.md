@@ -2,6 +2,8 @@
 
 ## Deployment of State-ful pod with application container
 
+Here we create pod(s) based on # of replicas required and mount the volumes from the container to the hostPath for easier access of logs/files that support or development team need on frequent basis
+
 **Command:**
 ```
 echo "
