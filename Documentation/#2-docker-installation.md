@@ -1,3 +1,6 @@
+# Docker Installation
+**Commands:**
+```
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
 sudo add-apt-repository \
@@ -7,4 +10,5 @@ sudo add-apt-repository \
 
 sudo apt-get update
 
-sudo apt-get install docker-ce=17.03.2~ce-0~ubuntu-xenial -y
+\sudo apt-get install docker-ce=17.03.2~ce-0~ubuntu-xenial -y
+```
